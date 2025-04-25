@@ -1,15 +1,21 @@
 "use client";
 import React, { useState } from "react";
 
+interface ExperienceFormEntry {
+  id: number;
+}
+
 const ExperienceForm = () => {
-  const [forms, setForms] = useState<number[]>([]);
+  const [forms, setForms] = useState<ExperienceFormEntry[]>([]);
+  const [counter, setCounter] = useState(0);// unique id
 
   const handleAddForm = () => {
-    setForms([...forms, forms.length]);
+    setForms((prev) => [...prev, { id: counter }]);
+    setCounter((prev) => prev + 1);
   };
 
-  const handleCancel = (index: number) => {
-    setForms(forms.filter((_, i) => i !== index));
+  const handleCancel = (id: number) => {
+    setForms((prev) => prev.filter((form) => form.id !== id));
   };
 
   return (
@@ -25,10 +31,10 @@ const ExperienceForm = () => {
         </button>
       </div>
 
-      {forms.map((formIndex) => (
+      {forms.map((form) => (
         <div
-          key={formIndex}
-          className="border p-6 rounded-md shadow-md bg-gray space-y-4"
+          key={form.id}
+          className="border p-6 rounded-md shadow-md bg-white space-y-4"
         >
           <p className="text-sm text-gray-600">Fields marked with * are required.</p>
 
@@ -98,7 +104,7 @@ const ExperienceForm = () => {
           <div className="flex justify-end space-x-4">
             <button
               className="border border-green-600 text-green-600 px-4 py-1 rounded hover:bg-green-50"
-              onClick={() => handleCancel(formIndex)}
+              onClick={() => handleCancel(form.id)}
             >
               Cancel
             </button>

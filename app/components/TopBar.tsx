@@ -1,4 +1,4 @@
-// components/TopBar.tsx
+
 import Image from 'next/image';
 
 const TopBar = () => {

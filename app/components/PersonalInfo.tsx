@@ -18,7 +18,7 @@ const PersonalInfo = () => {
   };
 
   return (
-    <div className="px-6 py-8 space-y-6">
+    <div className="max-w-4xl mx-auto px-6 py-8 space-y-6">
       <div>
         <h2 className="text-xl font-semibold">Personal information</h2>
         <p className="text-sm text-gray-600">Fields marked with * are required.</p>
